@@ -1,0 +1,19 @@
+{
+  "name": "es6-seed",
+  "version": "0.1.0",
+  "description": "Minimal seed for ES6 experiments.",
+
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+
+  "devDependencies": {
+    "del": "~1.1.1",
+    "gulp": "gulpjs/gulp.git#4.0",
+    "gulp-babel": "5.x"
+  },
+
+  "author": "Richard Park",
+  "license": "MIT"
+}
