@@ -9,9 +9,13 @@
   },
 
   "devDependencies": {
+    "babelify": "6.0.2",
+    "browserify": "9.0.8",
     "del": "~1.1.1",
     "gulp": "gulpjs/gulp.git#4.0",
-    "gulp-babel": "5.x"
+    "gulp-babel": "5.x",
+    "vinyl-source-stream": "~1.1.0",
+    "watchify": "3.1.2"
   },
 
   "author": "Richard Park",
