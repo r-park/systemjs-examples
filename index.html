@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ES6 Seed</title>
+</head>
+
+
+<body>
+
+<script src="./vendor/system.js"></script>
+<script>
+  System.import('./target/main').then(function(module){
+    console.log(module.foo.message);
+  });
+</script>
+
+</body>
+</html>

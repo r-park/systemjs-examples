@@ -1,10 +1,6 @@
-var babel      = require('gulp-babel'),
-    babelify   = require('babelify'),
-    browserify = require('browserify'),
-    del        = require('del'),
-    gulp       = require('gulp'),
-    vinyl      = require('vinyl-source-stream'),
-    watchify   = require('watchify');
+var babel = require('gulp-babel'),
+    del   = require('del'),
+    gulp  = require('gulp');
 
 
 var DIR_SRC = './src',
@@ -13,46 +9,15 @@ var DIR_SRC = './src',
 
 var config = {
   js: {
-    options: {
-      cache   : {},
-      entries : DIR_SRC +'/main.js',
-      noparse : [],
-      packageCache : {}
-    },
-
-    //required: [],
-
-    dest: DIR_TARGET,
-    outfile: 'main.js'
+    src: DIR_SRC + '/**/*.js'
   }
 };
 
 
-function compileJs(watch, done) {
-  var bundler = browserify(config.js.options);
-
-  if (watch) {
-    bundler = watchify(bundler);
-    bundler.on('update', compile);
-  }
-
-  function compile() {
-    bundler
-      .transform(babelify)
-      .bundle()
-      .pipe(vinyl(config.js.outfile))
-      .pipe(gulp.dest(config.js.dest))
-      .on('end', function(){
-        if (done) done();
-      });
-  }
-
-  compile();
-}
-
-
-gulp.task('js', function js(done){
-  compileJs(false, done);
+gulp.task('js', function js() {
+  return gulp.src(config.js.src)
+    .pipe(babel({modules: 'system'}))
+    .pipe(gulp.dest(DIR_TARGET));
 });
 
 
@@ -61,6 +26,6 @@ gulp.task('clean:target', function(done){
 });
 
 
-gulp.task('default', gulp.series('clean:target', function watch(){
-  compileJs(true);
+gulp.task('default', gulp.series('clean:target', 'js', function watch(){
+  gulp.watch(config.js.src, gulp.task('js'));
 }));

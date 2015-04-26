@@ -1,6 +1,6 @@
 {
   "name": "es6-seed",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Minimal seed for ES6 experiments.",
 
   "repository": {
@@ -10,12 +10,9 @@
 
   "devDependencies": {
     "babelify": "6.0.2",
-    "browserify": "9.0.8",
     "del": "~1.1.1",
     "gulp": "gulpjs/gulp.git#4.0",
-    "gulp-babel": "5.x",
-    "vinyl-source-stream": "~1.1.0",
-    "watchify": "3.1.2"
+    "gulp-babel": "5.x"
   },
 
   "author": "Richard Park",
