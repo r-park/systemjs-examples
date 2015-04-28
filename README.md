@@ -1,5 +1,5 @@
 # ES6 Seed
-Minimal seed for ES6 experiments.
+Minimal seed for kickstarting ES6 experiments.
 - [Babel](https://github.com/babel/babel)
 - [ES6 module loader](https://github.com/ModuleLoader/es6-module-loader)
 - [SystemJS](https://github.com/systemjs/systemjs)
