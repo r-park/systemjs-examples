@@ -1,31 +1,57 @@
 var babel = require('gulp-babel'),
-    del   = require('del'),
-    gulp  = require('gulp');
+    Builder = require('systemjs-builder'),
+    del = require('del'),
+    gulp = require('gulp'),
+    path = require('path');
 
 
-var DIR_SRC = './src',
-    DIR_TARGET = './target';
+gulp.task('bundle', function bundle(done){
+  var builder = new Builder({
+    baseURL: 'file:' + path.resolve('./src')
+  });
+
+  builder
+    .build('main', './target/bundled/main.js')
+    .then(
+      function(){
+        done();
+      },
+      function(error){
+        console.log('Build error');
+        console.log(error);
+        done();
+      }
+    );
+});
 
 
-var config = {
-  js: {
-    src: DIR_SRC + '/**/*.js'
-  }
-};
+gulp.task('executable', function bundle(done){
+  var builder = new Builder({
+    baseURL: 'file:' + path.resolve('./src')
+  });
+
+  builder
+    .buildSFX('entry', './target/executable/main.js')
+    .then(
+      function(){
+        done();
+      },
+      function(error){
+        console.log('Build error');
+        console.log(error);
+        done();
+      }
+    );
+});
 
 
-gulp.task('js', function js() {
-  return gulp.src(config.js.src)
+gulp.task('transpile', function transpile(){
+  return gulp.src('./src/**/*.js')
     .pipe(babel({modules: 'system'}))
-    .pipe(gulp.dest(DIR_TARGET));
+    .pipe(gulp.dest('./target/transpiled'));
 });
 
 
-gulp.task('clean:target', function(done){
-  del(DIR_TARGET + '/*', done);
-});
-
-
-gulp.task('default', gulp.series('clean:target', 'js', function watch(){
-  gulp.watch(config.js.src, gulp.task('js'));
+gulp.task('default', gulp.series('bundle', 'executable', 'transpile', function watch(){
+  gulp.watch('./src/**/*.js', gulp.task('transpile'));
 }));

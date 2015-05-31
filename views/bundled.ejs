@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bundled</title>
+</head>
+
+
+<body>
+
+<script src="/vendor/es6-module-loader/dist/es6-module-loader.js"></script>
+<script src="/vendor/system.js/dist/system.js"></script>
+<script>
+  System.baseURL = '/target/bundled';
+  System.import('main').then(function(module){
+    module.default();
+  });
+</script>
+
+</body>
+</html>
