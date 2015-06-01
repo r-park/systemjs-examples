@@ -1,7 +1,7 @@
 {
   "name": "systemjs-examples",
   "version": "0.1.0",
-  "description": "SystemJS examples",
+  "description": "Example ES6 module loading scenarios with SystemJS.",
   "homepage": "https://github.com/r-park/systemjs-examples",
   "repository": "https://github.com/r-park/systemjs-examples.git",
   "author": "Richard Park",
