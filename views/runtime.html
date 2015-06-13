@@ -12,12 +12,13 @@
 <body>
 
 <script src="/node_modules/babel-core/browser.min.js"></script>
-<script src="/vendor/es6-module-loader/dist/es6-module-loader.js"></script>
-<script src="/vendor/system.js/dist/system.js"></script>
+<script src="/node_modules/es6-module-loader/dist/es6-module-loader.js"></script>
+<script src="/node_modules/systemjs/dist/system.js"></script>
 <script>
+  //System.defaultJSExtensions = true;
   System.baseURL = '/src';
   System.transpiler = 'babel';
-  System.import('main').then(function(module){
+  System.import('main.js').then(function(module){
     module.default();
   });
 </script>

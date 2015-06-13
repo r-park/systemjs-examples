@@ -1,4 +1,5 @@
 var babel = require('gulp-babel'),
+    browserSync = require('browser-sync'),
     Builder = require('systemjs-builder'),
     del = require('del'),
     gulp = require('gulp'),
@@ -11,7 +12,7 @@ gulp.task('bundle', function bundle(done){
   });
 
   builder
-    .build('main', './target/bundled/main.js')
+    .build('main.js', './target/bundled/main.js')
     .then(
       function(){
         done();
@@ -31,7 +32,7 @@ gulp.task('executable', function bundle(done){
   });
 
   builder
-    .buildSFX('entry', './target/executable/main.js')
+    .buildSFX('entry.js', './target/executable/main.js')
     .then(
       function(){
         done();
@@ -49,6 +50,20 @@ gulp.task('transpile', function transpile(){
   return gulp.src('./src/**/*.js')
     .pipe(babel({modules: 'system'}))
     .pipe(gulp.dest('./target/transpiled'));
+});
+
+
+gulp.task('sync', function(){
+  browserSync
+    .create()
+    .init({
+      browser: 'firefox',
+      files: ['target/**/*', 'views/**/*'],
+      port: 7000,
+      server: {
+        baseDir: '.'
+      }
+    });
 });
 
 
