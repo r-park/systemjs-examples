@@ -10,7 +10,7 @@
   "private": true,
 
   "scripts": {
-    "start": "node server.js"
+    "start": "gulp sync"
   },
 
   "devDependencies": {
