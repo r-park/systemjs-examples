@@ -10,7 +10,7 @@
   "private": true,
 
   "scripts": {
-    "start": "gulp sync"
+    "start": "gulp build && gulp sync"
   },
 
   "devDependencies": {

@@ -67,6 +67,9 @@ gulp.task('sync', function(){
 });
 
 
-gulp.task('default', gulp.series('bundle', 'executable', 'transpile', function watch(){
+gulp.task('build', gulp.parallel('bundle', 'executable', 'transpile'));
+
+
+gulp.task('default', gulp.series('build', function watch(){
   gulp.watch('./src/**/*.js', gulp.task('transpile'));
 }));
