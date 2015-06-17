@@ -8,7 +8,7 @@ Install dev dependencies
 npm install
 ```
 
-Execute initial build and watch sources
+Execute initial builds and watch sources. Built artifacts will be output to `target/*`
 ```bash
 gulp
 ```
