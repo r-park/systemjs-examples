@@ -6,20 +6,24 @@ var babel = require('gulp-babel'),
     path = require('path');
 
 
-gulp.task('bundle', function bundle(done){
+function builder() {
   var builder = new Builder({
     baseURL: 'file:' + path.resolve('./src')
   });
 
-  builder
+  return builder;
+}
+
+
+gulp.task('bundle', function bundle(done){
+  builder()
     .build('main.js', './target/bundled/main.js')
     .then(
       function(){
         done();
       },
       function(error){
-        console.log('Build error');
-        console.log(error);
+        console.log('Build error:', error);
         done();
       }
     );
@@ -27,19 +31,14 @@ gulp.task('bundle', function bundle(done){
 
 
 gulp.task('executable', function bundle(done){
-  var builder = new Builder({
-    baseURL: 'file:' + path.resolve('./src')
-  });
-
-  builder
+  builder()
     .buildSFX('entry.js', './target/executable/main.js')
     .then(
       function(){
         done();
       },
       function(error){
-        console.log('Build error');
-        console.log(error);
+        console.log('Build error:', error);
         done();
       }
     );
