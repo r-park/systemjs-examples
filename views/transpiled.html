@@ -11,15 +11,23 @@
 
 <body>
 
-<script src="/node_modules/es6-module-loader/dist/es6-module-loader.js"></script>
-<script src="/node_modules/systemjs/dist/system.js"></script>
-<script>
-  //System.defaultJSExtensions = true;
-  System.baseURL = '/target/transpiled';
-  System.import('main.js').then(function(module){
-    module.default();
-  });
-</script>
+  <ul>
+    <li><a href="bundled.html">Bundled</a></li>
+    <li><a href="executable.html">Executable</a></li>
+    <li><a href="runtime.html">Runtime</a></li>
+    <li><strong>Transpiled</strong></li>
+  </ul>
+
+
+  <script src="/node_modules/es6-module-loader/dist/es6-module-loader.js"></script>
+  <script src="/node_modules/systemjs/dist/system.js"></script>
+  <script>
+    //System.defaultJSExtensions = true;
+    System.baseURL = '/target/transpiled';
+    System.import('main.js').then(function(module){
+      module.default();
+    });
+  </script>
 
 </body>
 </html>
