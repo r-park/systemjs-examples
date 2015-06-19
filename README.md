@@ -20,7 +20,7 @@ gulp sync
 
 # Scenarios
 
-### Bundled
+### Bundle
 Manually build a bundled package and output to `target/es5/bundled`
 ```bash
 gulp bundle
@@ -42,7 +42,7 @@ gulp transpile:ts
 gulp executable:ts
 ```
 
-### Transpiled
+### Transpile
 Manually transpile the sources to `target/es5/transpiled`. Transpilation is performed automatically by `gulp.watch` when the default `gulp` task is executed.
 ```bash
 gulp transpile
