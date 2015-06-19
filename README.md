@@ -13,11 +13,6 @@ Execute initial builds and watch sources. Built artifacts will be output to `tar
 gulp
 ```
 
-Start the BrowserSync server and navigate to `localhost:7000/views`
-```bash
-gulp sync
-```
-
 # Scenarios
 
 ### Bundle
