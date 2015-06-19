@@ -3,6 +3,7 @@ var babel = require('gulp-babel'),
     Builder = require('systemjs-builder'),
     del = require('del'),
     gulp = require('gulp'),
+    merge = require('merge2'),
     path = require('path'),
     typescript = require('gulp-typescript');
 
@@ -90,15 +91,37 @@ gulp.task('executable:ts', function bundle(done){
 });
 
 
+var typescriptProject = typescript.createProject({
+  module: 'system',
+  target: 'es5',
+  typescript: require('typescript')
+  //declarationFiles: true,
+  //noExternalResolve: true
+});
+
+
+gulp.task('scripts', function() {
+  var tsResult = gulp.src('lib/*.ts')
+    .pipe(ts(tsProject));
+
+  return merge([ // Merge the two output streams, so this task is finished when the IO of both operations are done.
+    tsResult.dts.pipe(gulp.dest('release/definitions')),
+    tsResult.js.pipe(gulp.dest('release/js'))
+  ]);
+});
+
+
 gulp.task('transpile:ts', function(){
   var tsResult = gulp.src(['./src/ts/*.ts'])
-    .pipe(typescript({
-      module: 'system',
-      target: 'es5',
-      typescript: require('typescript')
-    }));
+    .pipe(typescript(typescriptProject));
 
   return tsResult.js.pipe(gulp.dest('./target/ts/transpiled'));
+
+  // Merge the two output streams, so this task is finished when the IO of both operations are done.
+  //return merge([
+  //  tsResult.dts.pipe(gulp.dest('release/definitions')),
+  //  tsResult.js.pipe(gulp.dest('release/js'))
+  //]);
 });
 
 
@@ -126,5 +149,6 @@ gulp.task('build', gulp.parallel('build:es5', 'build:ts'));
 
 
 gulp.task('default', gulp.series('build', function watch(){
-  gulp.watch('./src/**/*.js', gulp.task('transpile'));
+  gulp.watch('./src/es5/*.js', gulp.task('transpile'));
+  gulp.watch('./src/ts/*.ts', gulp.task('transpile:ts'));
 }));
