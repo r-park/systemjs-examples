@@ -8,7 +8,7 @@ Install dev dependencies
 npm install
 ```
 
-Execute initial build and watch sources
+Execute initial builds and watch sources. Built artifacts will be output to `target/*`
 ```bash
 gulp
 ```
@@ -20,19 +20,23 @@ gulp sync
 
 # Scenarios
 
-## Manually build a bundled package and output to `target/bundled`
+### Bundled
+Manually build a bundled package and output to `target/bundled`
 ```bash
 gulp bundle
 ```
 
-## Manually build a self-contained executable and output to `target/executable`
+### Executable
+Manually build a self-contained executable and output to `target/executable`
 ```bash
 gulp executable
 ```
 
-## Manually transpile the sources to `target/transpiled`. Transpilation is performed automatically by `gulp.watch` when the default `gulp` task is executed.
+### Transpiled
+Manually transpile the sources to `target/transpiled`. Transpilation is performed automatically by `gulp.watch` when the default `gulp` task is executed.
 ```bash
 gulp transpile
 ```
 
-## Dynamically transpile at runtime – `views/runtime.html`
+### Runtime
+Dynamically transpile at runtime – `views/runtime.html`
