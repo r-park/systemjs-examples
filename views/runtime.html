@@ -16,6 +16,9 @@
     <li><a href="executable.html">Executable</a></li>
     <li><strong>Runtime</strong></li>
     <li><a href="transpiled.html">Transpiled</a></li>
+    <li><a href="typescript-bundled.html">TypeScript bundled</a></li>
+    <li><a href="typescript-executable.html">TypeScript executable</a></li>
+    <li><a href="typescript-transpiled.html">TypeScript transpiled</a></li>
   </ul>
 
 
@@ -23,10 +26,13 @@
   <script src="/node_modules/es6-module-loader/dist/es6-module-loader.js"></script>
   <script src="/node_modules/systemjs/dist/system.js"></script>
   <script>
-    //System.defaultJSExtensions = true;
-    System.baseURL = '/src';
-    System.transpiler = 'babel';
-    System.import('main.js').then(function(module){
+    System.config({
+      baseURL: '/src/es5',
+      defaultJSExtensions: true,
+      transpiler: 'babel'
+    });
+
+    System.import('test.js').then(function(module){
       module.default();
     });
   </script>
