@@ -95,9 +95,6 @@ gulp.task('transpile:ts', function(){
     .pipe(typescript({
       module: 'system',
       target: 'es5',
-      //noExternalResolve: true,
-      //noImplicitAny: true,
-      //out: 'output.js',
       typescript: require('typescript')
     }));
 
